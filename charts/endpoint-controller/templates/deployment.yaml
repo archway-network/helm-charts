@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "endpoint-controller.fullname" . }}
+  namespace: {{ include "endpoint-controller.namespace" . }} 
+  labels:
+    {{- include "endpoint-controller.labels" . | nindent 4}}
+spec:
+  replicas: {{.Values.replicaCount}}
+  selector:
+    matchLabels:
+      {{- include "endpoint-controller.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "endpoint-controller.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{include "endpoint-controller.serviceAccountName" .}}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
+          imagePullPolicy: {{.Values.image.pullPolicy}}
+          {{- with .Values.containerSecurityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+            - name: SYNC_PERIOD
+              value: "{{.Values.controller.sync_period}}"
+            - name: BLOCK_MISS
+              value: "{{.Values.controller.block_miss}}"
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
