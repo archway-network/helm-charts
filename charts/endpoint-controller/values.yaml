@@ -1,0 +1,41 @@
+---
+replicaCount: 1
+controller:
+  # how many blocks can be missed
+  block_miss: 6
+  # reconciliation time
+  sync_period: 30
+name: endpoint-controller
+image:
+  repository: ghcr.io/archway-network/endpoint-controller
+  pullPolicy: Always
+  tag: ""
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+podSecurityContext:
+  fsGroup: 20000
+  runAsGroup: 20000
+  runAsNonRoot: true
+  runAsUser: 20000
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  privileged: false
+podAnnotations: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
