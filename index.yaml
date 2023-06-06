@@ -1,34 +1,4 @@
 apiVersion: v1
 entries:
   endpoint-controller:
-  - apiVersion: v2
-    appVersion: 1.0.1
-    created: "2023-06-06T12:38:27.003959105Z"
-    description: A Helm chart for Kubernetes
-    digest: 4a01c4ae800571e8a11be2ae04ba02c3770a880ed5b7b0e7021a27a71da171df
-    name: endpoint-controller
-    type: application
-    urls:
-    - https://github.com/archway-network/helm-charts/releases/download/endpoint-controller-1.0.0/endpoint-controller-1.0.0.tgz
-    version: 1.0.0
-  - apiVersion: v2
-    appVersion: 1.0.1
-    created: "2023-06-06T12:29:26.405770508Z"
-    description: A Helm chart for Kubernetes
-    digest: f709c5181a861574c9fca72ebef7f597856c343744e4352f7fb1100b3d3ab8bd
-    name: endpoint-controller
-    type: application
-    urls:
-    - https://github.com/archway-network/helm-charts/releases/download/endpoint-controller-0.0.2/endpoint-controller-0.0.2.tgz
-    version: 0.0.2
-  - apiVersion: v2
-    appVersion: 1.0.1
-    created: "2023-06-06T12:24:15.003354262Z"
-    description: A Helm chart for Kubernetes
-    digest: 893bb25a9370451bd29551c1d43b43c2e1b54cbbba50d4575cb1c62424b35273
-    name: endpoint-controller
-    type: application
-    urls:
-    - https://github.com/archway-network/helm-charts/releases/download/endpoint-controller-0.0.1/endpoint-controller-0.0.1.tgz
-    version: 0.0.1
 generated: "2023-06-06T12:38:27.003969305Z"
