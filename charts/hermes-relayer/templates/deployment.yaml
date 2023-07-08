@@ -77,7 +77,7 @@ spec:
               readOnly: true
               mountPath: /etc/mnemonic
       containers:
-        - name: {{ .Chart.Name }}
+        - name: relayer 
           image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
           imagePullPolicy: {{.Values.image.pullPolicy}}
           args: [
