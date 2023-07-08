@@ -1,0 +1,38 @@
+---
+replicaCount: 1
+name: hermes-relayer
+image:
+  repository: ghcr.io/informalsystems/hermes
+  pullPolicy: Always
+  tag: ""
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+podSecurityContext:
+  fsGroup: 1001
+  runAsGroup: 1001
+  runAsNonRoot: true
+  runAsUser: 1001
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  privileged: false
+podAnnotations: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+relayer:
+  chain1ID:
+  chain2ID:
+  chain1SecretName:
+  chain2SecretName:
+  config: |
