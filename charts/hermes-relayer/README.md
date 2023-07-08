@@ -7,7 +7,7 @@ Kubernetes 1.16+
 ## Get Repository Info
 
 ```console
-helm repo add prometheus-community https://archway-network.github.io/helm-charts
+helm repo add arhcway-network https://archway-network.github.io/helm-charts
 helm repo update
 ```
 
