@@ -1,6 +1,5 @@
 ---
 replicaCount: 1
-name: hermes-relayer
 image:
   repository: ghcr.io/informalsystems/hermes
   pullPolicy: Always
