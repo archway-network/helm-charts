@@ -1,0 +1,52 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "hermes-relayer.fullname" . }}
+  namespace: {{ include "hermes-relayer.namespace" . }} 
+  labels:
+    {{- include "hermes-relayer.labels" . | nindent 4}}
+spec:
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: {{ .Values. }}
+    spec:
+      template:
+        metadata:
+        {{- with .Values.cronjobAnnotations }}
+        annotations:
+            {{- toYaml . | nindent 8 }}
+        {{- end }}
+        labels:
+            {{- include "hermes-relayer.selectorLabels" . | nindent 8 }}
+        spec:
+          containers:
+          - args: [
+                "update",
+                "client",
+                "--host-chain",
+                "{{ .Values.relayer.chain1ID }}",
+                "--client",
+                "{{ .Values.relayer.chain1ClientID }}",
+            ]
+            image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
+            imagePullPolicy: Always
+            name: "{{ .Values.relayer.chain1ID }}-client-update"
+            resources:
+                {{- toYaml .Values.resources | nindent 12 }}
+          - args: [
+                "update",
+                "client",
+                "--host-chain",
+                "{{ .Values.relayer.chain2ID }}",
+                "--client",
+                "{{ .Values.relayer.chain2ClientID }}",
+            ]
+            image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
+            imagePullPolicy: Always
+            name: "{{ .Values.relayer.chain2ID }}-client-update"
+            resources:
+                {{- toYaml .Values.resources | nindent 12 }}
+  schedule: "{{ .Values.relayer.clientUpdateSchedule }}"
+  successfulJobsHistoryLimit: 3
+  suspend: false
