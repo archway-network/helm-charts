@@ -26,12 +26,19 @@ containerSecurityContext:
       - ALL
   privileged: false
 podAnnotations: {}
+cronjobAnnotations: {}
 nodeSelector: {}
 tolerations: []
 affinity: {}
 relayer:
   chain1ID:
-  chain2ID:
+  chain1ClientID:
   chain1SecretName:
+
+  chain2ClientID:
+  chain2ID:
   chain2SecretName:
+
+  # TODO: Separate client update schedule for each chain
+  clientUpdateSchedule: "0 * * * *"
   config: |
