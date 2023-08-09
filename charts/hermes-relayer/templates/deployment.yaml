@@ -41,7 +41,7 @@ spec:
             - key: config.toml
               path: config.toml
       initContainers:
-        - name: initchain1
+        - name: init-chain-1
           image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
           args: [
             'keys',
@@ -59,7 +59,7 @@ spec:
             - name: chain1mnenomic
               readOnly: true
               mountPath: /etc/mnemonic
-        - name: initchain2
+        - name: init-chain-2
           image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
           args: [
             'keys',
