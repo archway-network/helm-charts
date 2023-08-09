@@ -8,8 +8,7 @@ metadata:
 spec:
   jobTemplate:
     metadata:
-      creationTimestamp: null
-      name: {{ include "hermes-relayer.fullname" . }}
+      name: {{ include "hermes-relayer.fullname" . }}-job
     spec:
       template:
         metadata:
@@ -17,8 +16,6 @@ spec:
         annotations:
           {{- toYaml . | nindent 12 }}
         {{- end }}
-        labels:
-          {{- include "hermes-relayer.selectorLabels" . | nindent 12 }}
         spec:
           {{- with .Values.podSecurityContext }}
           securityContext:
@@ -77,7 +74,7 @@ spec:
                   readOnly: true
                   mountPath: /etc/mnemonic
           containers:
-            - name: updateClientChain1 
+            - name: updateclientchain1
               image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
               imagePullPolicy: {{.Values.image.pullPolicy}}
               args: [
@@ -99,7 +96,7 @@ spec:
                 mountPath: /home/hermes/.hermes/keys
               - name: configfile
                 mountPath: "/home/hermes/.hermes/"
-            - name: updateClientChain2 
+            - name: updateclientchain2
               image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
               imagePullPolicy: {{.Values.image.pullPolicy}}
               args: [
@@ -133,4 +130,5 @@ spec:
           tolerations:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          restartPolicy: OnFailure
   schedule: "{{ .Values.relayer.clientUpdateSchedule }}"

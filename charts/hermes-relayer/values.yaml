@@ -33,10 +33,12 @@ affinity: {}
 relayer:
   chain1ID:
   chain1ClientID:
+  chain1SecretName:
+
   chain2ClientID:
   chain2ID:
-  chain1SecretName:
   chain2SecretName:
+
   # TODO: Separate client update schedule for each chain
   clientUpdateSchedule: "0 * * * *"
   config: |
