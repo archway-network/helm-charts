@@ -95,6 +95,8 @@ spec:
             mountPath: /home/hermes/.hermes/keys
           - name: configfile
             mountPath: "/home/hermes/.hermes/"
+          ports:
+          - containerPort: 3001
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
