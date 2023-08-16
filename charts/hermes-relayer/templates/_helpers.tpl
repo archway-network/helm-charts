@@ -55,6 +55,7 @@ Selector labels
 */}}
 {{- define "hermes-relayer.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "hermes-relayer.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
