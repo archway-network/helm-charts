@@ -30,6 +30,17 @@ cronjobAnnotations: {}
 nodeSelector: {}
 tolerations: []
 affinity: {}
+service:
+  telemetryPort: 3001
+serviceMonitor:
+  enabled: false
+  additionalLabels: {}
+  interval: 1m
+  scrapeTimeout: 10s
+  telemetryPath: /metrics
+  targetLabels: []
+  metricRelabelings: []
+  relabelings: []
 relayer:
   chain1ID:
   chain1ClientID:
