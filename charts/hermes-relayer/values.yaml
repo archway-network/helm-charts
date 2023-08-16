@@ -30,6 +30,8 @@ cronjobAnnotations: {}
 nodeSelector: {}
 tolerations: []
 affinity: {}
+service:
+  port: 3001
 relayer:
   chain1ID:
   chain1ClientID:

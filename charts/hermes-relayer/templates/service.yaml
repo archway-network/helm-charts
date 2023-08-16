@@ -10,11 +10,10 @@ spec:
   internalTrafficPolicy: Cluster
   ports:
     - name: telemetry
-      port: 3100
+      port: {{ .Values.service.port }}
       protocol: TCP
-      targetPort: 3100
+      targetPort: {{ .Values.service.port }}
   selector:
     matchLabels:
       {{- include "hermes-relayer.selectorLabels" . | nindent 6 }}
-  sessionAffinity: None
   type: ClusterIP
