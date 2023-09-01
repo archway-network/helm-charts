@@ -42,6 +42,8 @@ serviceMonitor:
   metricRelabelings: []
   relabelings: []
 
+logLevel: info
+
 config:
   rpc: []
   github:
