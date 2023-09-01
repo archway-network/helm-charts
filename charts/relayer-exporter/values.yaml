@@ -1,0 +1,50 @@
+image:
+  repository: ghcr.io/archway-network/relayer_exporter
+  pullPolicy: IfNotPresent
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsGroup: 65532
+  runAsUser: 65532
+  fsGroup: 65532
+  seccompProfile:
+    type: RuntimeDefault
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  privileged: false
+
+service:
+  type: ClusterIP
+  port: 8008
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+serviceMonitor:
+  enabled: false
+  additionalLabels: {}
+  interval: 1m
+  scrapeTimeout: 10s
+  telemetryPath: /metrics
+  targetLabels: []
+  metricRelabelings: []
+  relabelings: []
+
+config:
+  rpc: []
+  github:
+    org: archway-network
+    repo: networks
+    dir: _IBC
