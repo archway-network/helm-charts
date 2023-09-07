@@ -62,4 +62,15 @@ entries:
     urls:
     - https://github.com/archway-network/helm-charts/releases/download/hermes-relayer-1.0.0/hermes-relayer-1.0.0.tgz
     version: 1.0.0
-generated: "2023-08-17T09:03:39.372930195Z"
+  relayer-exporter:
+  - apiVersion: v2
+    appVersion: 0.4.0
+    created: "2023-09-07T16:04:44.700882839Z"
+    description: A Helm chart for relayer_exporter
+    digest: 23cef20a5e4c14c9d34996c37826753a9b5cd542cf6bd4c37f49f8e76385b9c9
+    name: relayer-exporter
+    type: application
+    urls:
+    - https://github.com/archway-network/helm-charts/releases/download/relayer-exporter-0.1.0/relayer-exporter-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-09-07T16:04:44.700914239Z"
