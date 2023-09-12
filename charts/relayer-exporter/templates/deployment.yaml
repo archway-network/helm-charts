@@ -43,6 +43,8 @@ spec:
             - --config
             - /config/config.yaml
             - --log-level={{ .Values.logLevel }}
+          env:
+            {{- include "relayer-exporter.renderEnv" .Values.env | nindent 12 }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

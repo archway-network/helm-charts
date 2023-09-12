@@ -27,6 +27,13 @@ service:
   type: ClusterIP
   port: 8008
 
+# env:
+#   GITHUB_TOKEN:
+#     valueFrom:
+#       secretKeyRef:
+#         key: token
+#         name: github-token
+
 resources: {}
 nodeSelector: {}
 tolerations: []
