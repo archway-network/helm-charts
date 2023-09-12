@@ -4,4 +4,4 @@ name: relayer-exporter
 description: A Helm chart for relayer_exporter
 type: application
 version: 0.1.0
-appVersion: 0.4.0
+appVersion: 0.5.0
