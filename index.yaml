@@ -64,6 +64,16 @@ entries:
     version: 1.0.0
   relayer-exporter:
   - apiVersion: v2
+    appVersion: 0.5.0
+    created: "2023-09-12T10:00:59.198500921Z"
+    description: A Helm chart for relayer_exporter
+    digest: 3d148cae2fc4a2eacb8e53982ba7c02657a92bcdd4c007e1758b9d4d991b1e85
+    name: relayer-exporter
+    type: application
+    urls:
+    - https://github.com/archway-network/helm-charts/releases/download/relayer-exporter-0.2.0/relayer-exporter-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     appVersion: 0.4.0
     created: "2023-09-07T16:04:44.700882839Z"
     description: A Helm chart for relayer_exporter
@@ -73,4 +83,4 @@ entries:
     urls:
     - https://github.com/archway-network/helm-charts/releases/download/relayer-exporter-0.1.0/relayer-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-07T16:04:44.700914239Z"
+generated: "2023-09-12T10:00:59.198514621Z"
