@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  chainpulse:
+  - apiVersion: v2
+    appVersion: 0.3.2
+    created: "2023-09-15T13:36:41.385628471Z"
+    description: A Helm chart for chainpulse
+    digest: 6df9dd99e92cad2af87151b75b7b4dc7654b32f03a9861f5c27f66f8405a7260
+    name: chainpulse
+    type: application
+    urls:
+    - https://github.com/archway-network/helm-charts/releases/download/chainpulse-0.1.0/chainpulse-0.1.0.tgz
+    version: 0.1.0
   endpoint-controller:
   - apiVersion: v2
     appVersion: 1.0.1
@@ -64,6 +75,16 @@ entries:
     version: 1.0.0
   relayer-exporter:
   - apiVersion: v2
+    appVersion: 0.6.0
+    created: "2023-09-15T13:36:41.527027923Z"
+    description: A Helm chart for relayer_exporter
+    digest: fa461b4465abb01ae138e9764931738e6975a11e29d843b3fdae693309360036
+    name: relayer-exporter
+    type: application
+    urls:
+    - https://github.com/archway-network/helm-charts/releases/download/relayer-exporter-0.2.1/relayer-exporter-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
     appVersion: 0.5.0
     created: "2023-09-12T10:00:59.198500921Z"
     description: A Helm chart for relayer_exporter
@@ -83,4 +104,4 @@ entries:
     urls:
     - https://github.com/archway-network/helm-charts/releases/download/relayer-exporter-0.1.0/relayer-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-12T10:00:59.198514621Z"
+generated: "2023-09-15T13:36:41.527140032Z"
