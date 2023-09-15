@@ -1,0 +1,73 @@
+image:
+  repository: informalsystems/chainpulse
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+replicaCount: 1
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsGroup: 65532
+  runAsUser: 65532
+  fsGroup: 65532
+  seccompProfile:
+    type: RuntimeDefault
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+  privileged: false
+
+service:
+  type: ClusterIP
+  port: 3000
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+serviceMonitor:
+  enabled: false
+  additionalLabels: {}
+  interval: 1m
+  scrapeTimeout: 10s
+  telemetryPath: /metrics
+  targetLabels: []
+  metricRelabelings: []
+  relabelings: []
+
+config: |
+  [chains]
+  endpoints = [
+    { name = "osmosis", comet_version = "0.34", url = "wss://rpc.osmosis.zone/websocket" },
+  ]
+
+  [database]
+  # Path to the SQLite database file where the metrics will be stored.
+  path = "/data/chainpulse.db"
+
+  [metrics]
+  # Whether or not to expose the metrics as a Prometheus scrape endpoint.
+  enabled = true
+
+  # The port to expose the metrics on, at /metrics.
+  port = 3000

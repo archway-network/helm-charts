@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "chainpulse.fullname" . }}-config
+  labels:
+    {{- include "chainpulse.labels" . | nindent 4 }}
+data:
+  config.toml: |
+{{ .Values.config | indent 4 }}
