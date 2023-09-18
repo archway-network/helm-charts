@@ -4,4 +4,4 @@ name: hermes-relayer
 description: A Helm chart for Kubernetes
 type: application
 version: 1.3.2
-appVersion: 1.5.1
+appVersion: 1.6.0
