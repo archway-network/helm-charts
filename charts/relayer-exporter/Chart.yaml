@@ -3,5 +3,5 @@ apiVersion: v2
 name: relayer-exporter
 description: A Helm chart for relayer_exporter
 type: application
-version: 0.2.2
+version: 0.2.3
 appVersion: 0.6.0
