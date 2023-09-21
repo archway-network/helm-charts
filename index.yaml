@@ -3,6 +3,16 @@ entries:
   chainpulse:
   - apiVersion: v2
     appVersion: 0.3.2
+    created: "2023-09-21T15:13:08.361137155Z"
+    description: A Helm chart for chainpulse
+    digest: f89f0d7ae44278b3a4d14161685617d5b19ede948fe0ed99051b7e7907c42133
+    name: chainpulse
+    type: application
+    urls:
+    - https://github.com/archway-network/helm-charts/releases/download/chainpulse-0.1.2/chainpulse-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.3.2
     created: "2023-09-18T15:44:23.230817685Z"
     description: A Helm chart for chainpulse
     digest: 83afec0c2822e3c47549e1c3be372470bad600e72c7099ce480e847e0ae695f5
@@ -43,6 +53,16 @@ entries:
     - https://github.com/archway-network/helm-charts/releases/download/endpoint-controller-1.0.0/endpoint-controller-1.0.0.tgz
     version: 1.0.0
   hermes-relayer:
+  - apiVersion: v2
+    appVersion: 1.6.0
+    created: "2023-09-21T15:13:08.60391154Z"
+    description: A Helm chart for Kubernetes
+    digest: debb6e1c06c3493a6f120ce4f097a57ae0b87bc488a86a2e15f1807146b38e04
+    name: hermes-relayer
+    type: application
+    urls:
+    - https://github.com/archway-network/helm-charts/releases/download/hermes-relayer-1.3.3/hermes-relayer-1.3.3.tgz
+    version: 1.3.3
   - apiVersion: v2
     appVersion: 1.6.0
     created: "2023-09-18T15:44:23.527512219Z"
@@ -106,6 +126,16 @@ entries:
   relayer-exporter:
   - apiVersion: v2
     appVersion: 0.6.0
+    created: "2023-09-21T15:13:08.7738871Z"
+    description: A Helm chart for relayer_exporter
+    digest: f79e6b7ea01ba01ca46465e5e37ad83b2353a0802260d2abc787cf0e7cdea66e
+    name: relayer-exporter
+    type: application
+    urls:
+    - https://github.com/archway-network/helm-charts/releases/download/relayer-exporter-0.2.3/relayer-exporter-0.2.3.tgz
+    version: 0.2.3
+  - apiVersion: v2
+    appVersion: 0.6.0
     created: "2023-09-18T15:44:23.70938756Z"
     description: A Helm chart for relayer_exporter
     digest: efadd2e31edda4ea24fc145e4cbef1be6b6d2eeacf8375937b8603b2ca9f882e
@@ -144,4 +174,4 @@ entries:
     urls:
     - https://github.com/archway-network/helm-charts/releases/download/relayer-exporter-0.1.0/relayer-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-18T15:44:23.709428761Z"
+generated: "2023-09-21T15:13:08.7739501Z"
