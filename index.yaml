@@ -55,6 +55,16 @@ entries:
   hermes-relayer:
   - apiVersion: v2
     appVersion: 1.6.0
+    created: "2023-10-13T11:44:53.05247416Z"
+    description: A Helm chart for Kubernetes
+    digest: 6ba31a7a3d16c14afb6369b639c858e6c6f292e46401f227aa382903afe02515
+    name: hermes-relayer
+    type: application
+    urls:
+    - https://github.com/archway-network/helm-charts/releases/download/hermes-relayer-1.3.4/hermes-relayer-1.3.4.tgz
+    version: 1.3.4
+  - apiVersion: v2
+    appVersion: 1.6.0
     created: "2023-09-21T15:13:08.60391154Z"
     description: A Helm chart for Kubernetes
     digest: debb6e1c06c3493a6f120ce4f097a57ae0b87bc488a86a2e15f1807146b38e04
@@ -174,4 +184,4 @@ entries:
     urls:
     - https://github.com/archway-network/helm-charts/releases/download/relayer-exporter-0.1.0/relayer-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-21T15:13:08.7739501Z"
+generated: "2023-10-13T11:44:53.053108563Z"
