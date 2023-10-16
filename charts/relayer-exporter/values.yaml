@@ -59,3 +59,4 @@ config:
     org: archway-network
     repo: networks
     dir: _IBC
+    testnetsDir: testnets/_IBC
