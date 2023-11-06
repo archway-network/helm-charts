@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "discord-alertmanager.fullname" . }}
+  labels:
+    {{- include "discord-alertmanager.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "discord-alertmanager.selectorLabels" . | nindent 4 }}

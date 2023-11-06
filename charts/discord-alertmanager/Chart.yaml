@@ -1,0 +1,7 @@
+---
+apiVersion: v2
+name: discord-alertmanager
+description: A Helm chart for discord-alertmanager
+type: application
+version: 0.1.0
+appVersion: 0.1.0

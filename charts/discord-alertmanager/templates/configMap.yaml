@@ -1,0 +1,12 @@
+---
+{{- if .Values.configFile }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "discord-alertmanager.fullname" . }}-config
+  labels:
+    {{- include "discord-alertmanager.labels" . | nindent 4 }}
+data:
+  config.yaml: |
+{{ toYaml .Values.configFile | indent 4 }}
+{{- end }}
