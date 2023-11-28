@@ -10,6 +10,7 @@ spec:
     metadata:
       name: {{ include "hermes-relayer.fullname" . }}-job
     spec:
+      backoffLimit: {{ .Values.retryAmount }}
       template:
         metadata:
         {{- with .Values.cronjobAnnotations }}

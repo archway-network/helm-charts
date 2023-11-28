@@ -7,7 +7,8 @@ image:
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-resources: {}
+resources:
+  {}
   # limits:
   #   cpu: 100m
   #   memory: 128Mi
@@ -30,6 +31,7 @@ cronjobAnnotations: {}
 nodeSelector: {}
 tolerations: []
 affinity: {}
+retryAmount: 3
 service:
   telemetryPort: 3001
 serviceMonitor:
