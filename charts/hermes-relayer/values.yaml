@@ -31,7 +31,7 @@ cronjobAnnotations: {}
 nodeSelector: {}
 tolerations: []
 affinity: {}
-retryAmount: 3
+backoffLimit: 6
 service:
   telemetryPort: 3001
 serviceMonitor:
