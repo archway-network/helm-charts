@@ -1,0 +1,7 @@
+---
+apiVersion: v2
+name: validator-exporter
+description: A Helm chart for validator-exporter
+type: application
+version: 1.0.0
+appVersion: 1.0.0
