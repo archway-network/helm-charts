@@ -244,4 +244,15 @@ entries:
     urls:
     - https://github.com/archway-network/helm-charts/releases/download/relayer-exporter-0.1.0/relayer-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-28T09:44:08.760207632Z"
+  validator-exporter:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-01-03T10:57:20.731380296Z"
+    description: A Helm chart for validator-exporter
+    digest: 4c16f11f43e96f290f2e1f0c5f7c9748aa09a756c74d0a2a16d0863c1ae6a4a3
+    name: validator-exporter
+    type: application
+    urls:
+    - https://github.com/archway-network/helm-charts/releases/download/validator-exporter-1.0.0/validator-exporter-1.0.0.tgz
+    version: 1.0.0
+generated: "2024-01-03T10:57:20.731551814Z"
