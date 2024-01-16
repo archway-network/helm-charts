@@ -256,6 +256,16 @@ entries:
     version: 0.1.0
   validator-exporter:
   - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2024-01-16T12:57:35.229638799Z"
+    description: A Helm chart for validator-exporter
+    digest: 52bccf98cf21861f8c2c868405faf1cf4eabf415ef4290545dc1b66b3b27b049
+    name: validator-exporter
+    type: application
+    urls:
+    - https://github.com/archway-network/helm-charts/releases/download/validator-exporter-1.1.0/validator-exporter-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
     appVersion: 1.0.0
     created: "2024-01-03T10:57:20.731380296Z"
     description: A Helm chart for validator-exporter
@@ -265,4 +275,4 @@ entries:
     urls:
     - https://github.com/archway-network/helm-charts/releases/download/validator-exporter-1.0.0/validator-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2024-01-15T07:26:03.37924404Z"
+generated: "2024-01-16T12:57:35.22969266Z"
