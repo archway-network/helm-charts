@@ -56,6 +56,10 @@ spec:
                 - name: chain1mnenomic
                   readOnly: true
                   mountPath: /etc/mnemonic
+              {{- with .Values.containerSecurityContext }}
+              securityContext:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
             - name: init-chain-2
               image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
               args: [
@@ -74,6 +78,10 @@ spec:
                 - name: chain2mnenomic
                   readOnly: true
                   mountPath: /etc/mnemonic
+              {{- with .Values.containerSecurityContext }}
+              securityContext:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
           containers:
             - name: update-client-chain-1
               image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"

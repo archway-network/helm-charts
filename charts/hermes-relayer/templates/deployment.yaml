@@ -8,9 +8,6 @@ metadata:
     {{- include "hermes-relayer.labels" . | nindent 4}}
 spec:
   replicas: {{.Values.replicaCount}}
-  securityContext:
-    runAsUser: 2000
-    runAsGroup: 2000
   selector:
     matchLabels:
       {{- include "hermes-relayer.selectorLabels" . | nindent 6 }}
@@ -62,6 +59,10 @@ spec:
             - name: chain1mnenomic
               readOnly: true
               mountPath: /etc/mnemonic
+          {{- with .Values.containerSecurityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
         - name: init-chain-2
           image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
           args: [
@@ -80,6 +81,10 @@ spec:
             - name: chain2mnenomic
               readOnly: true
               mountPath: /etc/mnemonic
+          {{- with .Values.containerSecurityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       containers:
         - name: relayer 
           image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
