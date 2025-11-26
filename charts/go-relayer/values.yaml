@@ -1,0 +1,129 @@
+---
+replicaCount: 1
+image:
+  repository: ghcr.io/cosmos/relayer
+  pullPolicy: Always
+  tag: ""
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+resources:
+  {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+podSecurityContext:
+  fsGroup: 1001
+  runAsGroup: 1001
+  runAsNonRoot: true
+  runAsUser: 1001
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  privileged: false
+podAnnotations: {}
+cronjobAnnotations: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+backoffLimit: 6
+service:
+  telemetryPort: 3001
+serviceMonitor:
+  enabled: false
+  additionalLabels: {}
+  interval: 1m
+  scrapeTimeout: 10s
+  telemetryPath: /metrics
+  targetLabels: []
+  metricRelabelings: []
+  relabelings: []
+relayer:
+  chain1ID:
+  chain1ClientID:
+  chain1SecretName:
+
+  chain2ClientID:
+  chain2ID:
+  chain2SecretName:
+
+  # TODO: Separate client update schedule for each chain
+  clientUpdateSchedule: "0 * * * *"
+  config: |
+    global:
+        api-listen-addr: :5183
+        timeout: 10s
+        memo: bolt - NetX team
+        light-cache-size: 20
+        log-level: info
+        ics20-memo-limit: 0
+        max-receiver-size: 150
+    chains:
+        archway:
+            type: cosmos
+            value:
+                key-directory: /Users/shahbaznazir/.relayer/keys/archway-1
+                key: archwaykey
+                chain-id: archway-1
+                rpc-addr: https://rpc.mainnet.internal.archway.io:443
+                account-prefix: archway
+                keyring-backend: test
+                gas-adjustment: 1.2
+                gas-prices: 5aarch
+                min-gas-amount: 200000
+                max-gas-amount: 600000
+                debug: false
+                timeout: 20s
+                block-timeout: ""
+                output-format: json
+                sign-mode: direct
+                extra-codecs: []
+                coin-type: 118
+                signing-algorithm: ""
+                broadcast-mode: batch
+                min-loop-duration: 0s
+                extension-options: []
+                feegrants: null
+        noble:
+            type: cosmos
+            value:
+                key-directory: /Users/shahbaznazir/.relayer/keys/noble-1
+                key: noblekey
+                chain-id: noble-1
+                rpc-addr: https://noble-rpc.polkachu.com:443
+                account-prefix: noble
+                keyring-backend: test
+                gas-adjustment: 1.5
+                gas-prices: 0.1uusdc
+                min-gas-amount: 200000
+                max-gas-amount: 600000
+                debug: false
+                timeout: 20s
+                block-timeout: ""
+                output-format: json
+                sign-mode: direct
+                extra-codecs: []
+                coin-type: 118
+                signing-algorithm: ""
+                broadcast-mode: batch
+                min-loop-duration: 0s
+                extension-options: []
+                feegrants: null
+    paths:
+        archway-noble:
+            src:
+                chain-id: archway-1
+                client-id: 07-tendermint-28
+                connection-id: connection-31
+            dst:
+                chain-id: noble-1
+                client-id: 07-tendermint-17
+                connection-id: connection-26
+            src-channel-filter:
+                rule: ""
+                channel-list: []
