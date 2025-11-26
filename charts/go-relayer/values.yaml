@@ -3,18 +3,17 @@ replicaCount: 1
 image:
   repository: ghcr.io/cosmos/relayer
   pullPolicy: Always
-  tag: ""
+  tag: main@sha256:fafe2c1881e854b40eda141c3c89e276f4acd36242ba4aeaa492e90bc53ff8f7
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 resources:
-  {}
   # limits:
   #   cpu: 100m
   #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
 podSecurityContext:
   fsGroup: 1001
   runAsGroup: 1001
@@ -33,24 +32,24 @@ tolerations: []
 affinity: {}
 backoffLimit: 6
 service:
-  telemetryPort: 3001
+  telemetryPort: 5148
 serviceMonitor:
   enabled: false
   additionalLabels: {}
   interval: 1m
   scrapeTimeout: 10s
-  telemetryPath: /metrics
+  telemetryPath: /relayer/metrics
   targetLabels: []
   metricRelabelings: []
   relabelings: []
 relayer:
-  chain1ID:
-  chain1ClientID:
-  chain1SecretName:
+  chain1Name: archway
+  chain1SecretName: archway-mnemonic-go
+  chain1KeyName: archwaykey
 
-  chain2ClientID:
-  chain2ID:
-  chain2SecretName:
+  chain2Name: noble
+  chain2SecretName: noble-mnemonic-go
+  chain2KeyName: noblekey
 
   # TODO: Separate client update schedule for each chain
   clientUpdateSchedule: "0 * * * *"
@@ -67,7 +66,7 @@ relayer:
         archway:
             type: cosmos
             value:
-                key-directory: /Users/shahbaznazir/.relayer/keys/archway-1
+                key-directory: /root/.relayer/keys/archway-1
                 key: archwaykey
                 chain-id: archway-1
                 rpc-addr: https://rpc.mainnet.internal.archway.io:443
@@ -92,10 +91,10 @@ relayer:
         noble:
             type: cosmos
             value:
-                key-directory: /Users/shahbaznazir/.relayer/keys/noble-1
+                key-directory: /root/.relayer/keys/noble-1
                 key: noblekey
                 chain-id: noble-1
-                rpc-addr: https://noble-rpc.polkachu.com:443
+                rpc-addr: https://rpc.noble.xyz:443
                 account-prefix: noble
                 keyring-backend: test
                 gas-adjustment: 1.5

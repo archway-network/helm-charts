@@ -28,10 +28,10 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-      - name: chain1mnenomic
+      - name: chain1mnemonic
         secret:
           secretName: {{ .Values.relayer.chain1SecretName }}
-      - name: chain2mnenomic
+      - name: chain2mnemonic
         secret:
           secretName: {{ .Values.relayer.chain2SecretName }}
       - name: keys
@@ -45,51 +45,53 @@ spec:
       initContainers:
         - name: init-chain-1
           image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
-          rly keys restore chain_name key_name mnemonic
-          args: [
-            'keys',
-            'restore',
-            '{{ .Values.relayer.chain1Name }}',
-            '{{ .Values.relayer.chain1KeyName }} < /etc/chain1mnemonic',
-          ]
+          command: ["/bin/sh", "-c"]
+          args:
+            - >
+              rly --home /root/.relayer keys restore {{ .Values.relayer.chain1Name }} {{ .Values.relayer.chain1KeyName }} "$(cat /etc/chain1mnemonic/mnemonic)"
+
           volumeMounts:
             - name: keys
               mountPath: "/root/.relayer/keys"
             - name: configfile
-              mountPath: "/root/.relayer/"
-            - name: chain1mnenomic
+              mountPath: "/root/.relayer/config"
+            - name: chain1mnemonic
               readOnly: true
-              mountPath: /etc/chain1mnenomic
+              mountPath: /etc/chain1mnemonic
           {{- with .Values.containerSecurityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
         - name: init-chain-2
           image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
-          args: [
-            'keys',
-            'restore',
-            '{{ .Values.relayer.chain2Name }}',
-            '{{ .Values.relayer.chain2KeyName }} < /etc/chain2mnenomic',
-          ]
+          command: ["/bin/sh", "-c"]
+          args:
+            - >
+              rly --home /root/.relayer keys restore {{ .Values.relayer.chain2Name }} {{ .Values.relayer.chain2KeyName }} "$(cat /etc/chain2mnemonic/mnemonic)"
           volumeMounts:
             - name: keys
               mountPath: "/root/.relayer/keys"
             - name: configfile
-              mountPath: "/root/.relayer/"
-            - name: chain2mnenomic
+              mountPath: "/root/.relayer/config/"
+            - name: chain2mnemonic
               readOnly: true
-              mountPath: /etc/chain2mnenomic
+              mountPath: /etc/chain2mnemonic
           {{- with .Values.containerSecurityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
       containers:
-        - name: relayer 
+        - name: relayer
           image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
           imagePullPolicy: {{.Values.image.pullPolicy}}
+          command: ["rly"]
           args: [
-            'start'
+            '--home',
+            '/root/.relayer',
+            'start',
+            '--enable-metrics-server',
+            '--metrics-listen-addr',
+            '0.0.0.0:5148'
           ]
           {{- with .Values.containerSecurityContext }}
           securityContext:
@@ -101,7 +103,7 @@ spec:
           - name: keys
             mountPath: /root/.relayer/keys
           - name: configfile
-            mountPath: "/root/.relayer/"
+            mountPath: "/root/.relayer/config"
           ports:
           - containerPort: 3001
       {{- with .Values.nodeSelector }}
