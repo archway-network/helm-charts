@@ -52,6 +52,17 @@ entries:
     urls:
     - https://github.com/archway-network/helm-charts/releases/download/endpoint-controller-1.0.0/endpoint-controller-1.0.0.tgz
     version: 1.0.0
+  go-relayer:
+  - apiVersion: v2
+    appVersion: 2.6.0
+    created: "2025-12-01T16:26:50.11305414Z"
+    description: A Helm chart for Kubernetes
+    digest: 3fe7f314ca28475a7dfd39f0e866330cb23bfe75b2608e1dd3711bdc5bd38eb6
+    name: go-relayer
+    type: application
+    urls:
+    - https://github.com/archway-network/helm-charts/releases/download/go-relayer-1.0.0/go-relayer-1.0.0.tgz
+    version: 1.0.0
   hermes-relayer:
   - apiVersion: v2
     appVersion: 1.10.3
@@ -295,4 +306,4 @@ entries:
     urls:
     - https://github.com/archway-network/helm-charts/releases/download/validator-exporter-1.0.0/validator-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2024-10-07T10:50:58.709709467Z"
+generated: "2025-12-01T16:26:50.113110886Z"
