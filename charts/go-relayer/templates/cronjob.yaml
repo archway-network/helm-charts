@@ -1,0 +1,117 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "go-relayer.fullname" . }}
+  namespace: {{ include "go-relayer.namespace" . }}
+  labels:
+    {{- include "go-relayer.labels" . | nindent 4 }}
+spec:
+  jobTemplate:
+    metadata:
+      name: {{ include "go-relayer.fullname" . }}-job
+    spec:
+      backoffLimit: {{ .Values.backoffLimit }}
+      template:
+        metadata:
+        {{- with .Values.cronjobAnnotations }}
+        annotations:
+          {{- toYaml . | nindent 12 }}
+        {{- end }}
+        spec:
+          {{- with .Values.podSecurityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumes:
+          - name: chain1mnemonic
+            secret:
+              secretName: {{ .Values.relayer.chain1SecretName }}
+          - name: chain2mnemonic
+            secret:
+              secretName: {{ .Values.relayer.chain2SecretName }}
+          - name: keys
+            emptyDir: {}
+          - name: configfile
+            configMap:
+              name: {{ .Release.Name }}-configmap
+              items:
+                - key: config.yaml
+                  path: config.yaml
+          initContainers:
+            - name: init-chain-1
+              image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
+              command: ["/bin/sh", "-c"]
+              args:
+                - >
+                  rly --home /root/.relayer keys restore {{ .Values.relayer.chain1Name }} {{ .Values.relayer.chain1KeyName }} "$(cat /etc/chain1mnemonic/mnemonic)"
+
+              volumeMounts:
+                - name: keys
+                  mountPath: "/root/.relayer/keys"
+                - name: configfile
+                  mountPath: "/root/.relayer/config"
+                - name: chain1mnemonic
+                  readOnly: true
+                  mountPath: /etc/chain1mnemonic
+              {{- with .Values.containerSecurityContext }}
+              securityContext:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+            - name: init-chain-2
+              image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
+              command: ["/bin/sh", "-c"]
+              args:
+                - >
+                  rly --home /root/.relayer keys restore {{ .Values.relayer.chain2Name }} {{ .Values.relayer.chain2KeyName }} "$(cat /etc/chain2mnemonic/mnemonic)"
+              volumeMounts:
+                - name: keys
+                  mountPath: "/root/.relayer/keys"
+                - name: configfile
+                  mountPath: "/root/.relayer/config/"
+                - name: chain2mnemonic
+                  readOnly: true
+                  mountPath: /etc/chain2mnemonic
+              {{- with .Values.containerSecurityContext }}
+              securityContext:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+          containers:
+            - name: relayer
+              image: "{{.Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}"
+              imagePullPolicy: {{.Values.image.pullPolicy}}
+              command: ["rly"]
+              args: [
+                '--home',
+                '/root/.relayer',
+                'tx',
+                'update-clients',
+                '{{ .Values.relayer.pathName }}'
+              ]
+              {{- with .Values.containerSecurityContext }}
+              securityContext:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+              resources:
+                {{- toYaml .Values.resources | nindent 16 }}
+              volumeMounts:
+              - name: keys
+                mountPath: /root/.relayer/keys
+              - name: configfile
+                mountPath: "/root/.relayer/config"
+              ports:
+              - containerPort: 3001
+          {{- with .Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          restartPolicy: OnFailure
+  schedule: "{{ .Values.relayer.clientUpdateSchedule }}"

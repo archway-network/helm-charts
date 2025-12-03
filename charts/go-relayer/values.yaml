@@ -51,8 +51,10 @@ relayer:
   chain2SecretName: noble-mnemonic-go
   chain2KeyName: noblekey
 
+  pathName: archway-noble
+
   # TODO: Separate client update schedule for each chain
-  clientUpdateSchedule: "0 * * * *"
+  clientUpdateSchedule: "*/5 * * * *"
   config: |
     global:
         api-listen-addr: :5183
