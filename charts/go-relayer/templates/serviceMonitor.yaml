@@ -3,9 +3,9 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ include "hermes-relayer.fullname" . }}
+  name: {{ include "go-relayer.fullname" . }}
   labels:
-    {{- include "hermes-relayer.labels" . | nindent 4 }}
+    {{- include "go-relayer.labels" . | nindent 4 }}
     {{- with .Values.serviceMonitor.additionalLabels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
@@ -16,7 +16,7 @@ spec:
       - {{ .Release.Namespace }}
   selector:
     matchLabels:
-      {{- include "hermes-relayer.selectorLabels" . | nindent 6 }}
+      {{- include "go-relayer.selectorLabels" . | nindent 6 }}
   endpoints:
     - port: telemetry
       path: {{ .Values.serviceMonitor.telemetryPath }}
