@@ -55,6 +55,16 @@ entries:
   go-relayer:
   - apiVersion: v2
     appVersion: 2.6.0
+    created: "2025-12-03T10:59:45.776891473Z"
+    description: A Helm chart for Kubernetes
+    digest: 36f8a7c6cb698c47bda6322d9b615de55d71d3b6e21ac796024d56517a055aed
+    name: go-relayer
+    type: application
+    urls:
+    - https://github.com/archway-network/helm-charts/releases/download/go-relayer-1.1.0/go-relayer-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
+    appVersion: 2.6.0
     created: "2025-12-01T16:26:50.11305414Z"
     description: A Helm chart for Kubernetes
     digest: 3fe7f314ca28475a7dfd39f0e866330cb23bfe75b2608e1dd3711bdc5bd38eb6
@@ -306,4 +316,4 @@ entries:
     urls:
     - https://github.com/archway-network/helm-charts/releases/download/validator-exporter-1.0.0/validator-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2025-12-01T16:26:50.113110886Z"
+generated: "2025-12-03T10:59:45.776979256Z"
