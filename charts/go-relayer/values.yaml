@@ -34,7 +34,7 @@ backoffLimit: 6
 service:
   telemetryPort: 5148
 serviceMonitor:
-  enabled: false
+  enabled: true
   additionalLabels: {}
   interval: 1m
   scrapeTimeout: 10s
