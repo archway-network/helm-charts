@@ -54,7 +54,10 @@ relayer:
   pathName: archway-noble
 
   # TODO: Separate client update schedule for each chain
-  clientUpdateSchedule: "*/5 * * * *"
+  clientUpdateCronjob:
+    enabled: false
+    schedule: "*/5 * * * *"
+
   config: |
     global:
         api-listen-addr: :5183
