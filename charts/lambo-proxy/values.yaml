@@ -1,6 +1,4 @@
 ---
-replicaCount: 1
-
 image:
   repository: ghcr.io/archway-network/lambo-proxy
   pullPolicy: Always
@@ -53,23 +51,39 @@ serviceMonitor:
   relabelings: []
 
 ingress:
-  enabled: false
+  enabled: true
   className: ""
-  annotations: {}
+  annotations: {
+    cert-manager.io/cluster-issuer: letsencrypt-prod-kong
+  }
   hosts:
-    - host: lambo-proxy.local
+    - host: rpc.osmosis.lambo.archway.io
       paths:
         - path: /
           pathType: Prefix
-  tls: []
+  tls:
+    - secretName: rpc-osmosis-lambo-tls
+      hosts:
+        - rpc.osmosis.lambo.archway.io
 
 config: |
+  # Load Balancer Configuration
+  # Environment variables override these values
+
+  # Port on which the load balancing proxy listens
   proxy_port: 8080
+
+  # Interval between health check cycles
   health_check_interval: 5s
+
+  # Number of consecutive failures before marking an endpoint as unhealthy
   health_check_failures: 3
+
+  # EWMA (Exponentially Weighted Moving Average) decay factor (0.1 = slow memory)
   ewma_alpha: 0.1
+
+  # List of backend RPC endpoints to load balance
   backend_addresses:
     - "rpc-osmosis.ecostake.com:443"
     - "osmosis-rpc.polkachu.com:443"
     - "rpc.osmosis.validatus.com:443"
-
