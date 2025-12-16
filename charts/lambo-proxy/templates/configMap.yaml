@@ -6,6 +6,6 @@ metadata:
   labels:
     {{- include "lambo-proxy.labels" . | nindent 4 }}
 data:
-  config.toml: |
+  config.yaml: |
 {{.Values.config |indent 4}}
 
