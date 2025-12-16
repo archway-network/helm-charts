@@ -6,15 +6,6 @@ metadata:
   labels:
     {{- include "lambo-proxy.labels" . | nindent 4 }}
 data:
-  config.yaml: |
-{{- with .Values.config }}
-    proxy_port: {{ .proxy_port }}
-    health_check_interval: {{ .health_check_interval }}
-    health_check_failures: {{ .health_check_failures }}
-    ewma_alpha: {{ .ewma_alpha }}
-    backend_addresses:
-{{- range .backend_addresses }}
-      - {{ . | quote }}
-{{- end }}
-{{- end }}
+  config.toml: |
+{{.Values.config |indent 4}}
 

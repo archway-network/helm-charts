@@ -63,7 +63,7 @@ ingress:
           pathType: Prefix
   tls: []
 
-config:
+config: |
   proxy_port: 8080
   health_check_interval: 5s
   health_check_failures: 3
