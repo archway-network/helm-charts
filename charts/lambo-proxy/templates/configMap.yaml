@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+  labels:
+    {{- include "lambo-proxy.labels" . | nindent 4 }}
+data:
+  config.toml: |
+{{.Values.config |indent 4}}
+
