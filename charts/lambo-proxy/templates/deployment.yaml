@@ -50,10 +50,6 @@ spec:
             mountPath: "/app/config.yaml"
             subPath: config.yaml
             readOnly: true
-          ports:
-          - name: http
-            containerPort: {{ .Values.config.proxy_port | default 8080 }}
-            protocol: TCP
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
