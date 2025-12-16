@@ -204,6 +204,17 @@ entries:
     urls:
     - https://github.com/archway-network/helm-charts/releases/download/hermes-relayer-1.0.0/hermes-relayer-1.0.0.tgz
     version: 1.0.0
+  lambo-proxy:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2025-12-16T13:32:16.737353348Z"
+    description: A Helm chart for Kubernetes
+    digest: 531e2f574730fa0aa19d76b46a796806a50b0bb316ceeb53860989ce302d8c77
+    name: lambo-proxy
+    type: application
+    urls:
+    - https://github.com/archway-network/helm-charts/releases/download/lambo-proxy-0.1.0/lambo-proxy-0.1.0.tgz
+    version: 0.1.0
   relayer-exporter:
   - apiVersion: v2
     appVersion: 0.13.0
@@ -336,4 +347,4 @@ entries:
     urls:
     - https://github.com/archway-network/helm-charts/releases/download/validator-exporter-1.0.0/validator-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2025-12-04T10:48:42.99269377Z"
+generated: "2025-12-16T13:32:16.737437676Z"
