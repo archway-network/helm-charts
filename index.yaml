@@ -207,6 +207,16 @@ entries:
   lambo-proxy:
   - apiVersion: v2
     appVersion: latest
+    created: "2025-12-17T14:31:10.2093036Z"
+    description: A Helm chart for Kubernetes
+    digest: 3c721f1b95edab6fbfc407334515567fad491cbf017ed533eaf18a73b5eb9834
+    name: lambo-proxy
+    type: application
+    urls:
+    - https://github.com/archway-network/helm-charts/releases/download/lambo-proxy-0.1.1/lambo-proxy-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: latest
     created: "2025-12-16T13:32:16.737353348Z"
     description: A Helm chart for Kubernetes
     digest: 531e2f574730fa0aa19d76b46a796806a50b0bb316ceeb53860989ce302d8c77
@@ -347,4 +357,4 @@ entries:
     urls:
     - https://github.com/archway-network/helm-charts/releases/download/validator-exporter-1.0.0/validator-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2025-12-16T13:32:16.737437676Z"
+generated: "2025-12-17T14:31:10.209385553Z"
