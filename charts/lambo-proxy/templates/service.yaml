@@ -12,7 +12,7 @@ spec:
     - name: http
       port: {{ .Values.service.port }}
       protocol: TCP
-      targetPort: http
+      targetPort: 8080
   selector:
     {{- include "lambo-proxy.selectorLabels" . | nindent 4 }}
   type: {{ .Values.service.type }}

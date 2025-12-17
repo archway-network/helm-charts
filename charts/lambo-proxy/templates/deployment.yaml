@@ -40,6 +40,9 @@ spec:
             - "-config"
             - "/app/config.yaml"
           {{- with .Values.containerSecurityContext }}
+          ports:
+          -  containerPort: 8080
+             protocol: TCP
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
